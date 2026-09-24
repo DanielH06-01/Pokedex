@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <main class="app">
+
+    <!-- ===== El aparato: pantalla + controles ===== -->
+    <section class="dex" aria-label="Pokédex">
+      <header class="dex-cabeza">
+        <div class="lente arrancando" id="lente" aria-hidden="true"><span></span></div>
+        <div class="luces" aria-hidden="true">
+          <i class="luz l-roja"></i><i class="luz l-amarilla"></i><i class="luz l-verde"></i>
+        </div>
+        <h1>Pokédex IA</h1>
+      </header>
+
+      <div class="marco">
+        <div class="pantalla cargando" id="pantalla">
+          <div class="pantalla-cabeza">
+            <span id="pantallaId">N.º ----</span>
+            <span id="pantallaCategoria"></span>
+          </div>
+
+          <div class="escenario">
+            <img id="pokeImg" alt="" hidden>
+            <p id="pantallaMensaje" class="pantalla-mensaje">Iniciando Pokédex…</p>
+          </div>
+
+          <div class="pantalla-pie">
+            <h2 id="pokeNombre"></h2>
+            <div id="pokeTipos" class="tipos"></div>
+          </div>
+        </div>
+      </div>
+
+      <form id="formBuscar" class="buscador" autocomplete="off">
+        <input id="inputBuscar" type="text" list="datalistNombres"
+               placeholder="Nombre en inglés o número del 1 al 151" aria-label="Buscar Pokémon">
+        <button type="submit" class="btn-buscar">Buscar</button>
+      </form>
+      <datalist id="datalistNombres"></datalist>
+      <p id="estadoBusqueda" class="estado" role="status"></p>
+
+      <div class="controles">
+        <button type="button" id="btnAnterior" aria-label="Pokémon anterior">◀</button>
+        <button type="button" id="btnAleatorio">🎲 Al azar</button>
+        <button type="button" id="btnSiguiente" aria-label="Pokémon siguiente">▶</button>
+        <button type="button" id="btnShiny" aria-pressed="false">✨ Shiny</button>
+        <button type="button" id="btnGrito">🔊 Grito</button>
+        <button type="button" id="btnLeer">📖 Leer entrada</button>
+      </div>
+    </section>
+
+    <!-- ===== Datos y chat ===== -->
+    <div class="lateral">
+
+      <article class="ficha" aria-label="Datos del Pokémon">
+        <p id="fichaDescripcion" class="ficha-descripcion">Esperando datos de la Pokédex…</p>
+        <dl class="ficha-medidas">
+          <div><dt>Altura</dt><dd id="datoAltura">–</dd></div>
+          <div><dt>Peso</dt><dd id="datoPeso">–</dd></div>
+          <div><dt>Exp. base</dt><dd id="datoExp">–</dd></div>
+        </dl>
+        <div id="fichaStats" class="stats"></div>
+      </article>
+
+      <section class="chat" aria-label="Chat sobre el Pokémon en pantalla">
+        <header class="chat-cabeza">
+          <img id="chatSprite" alt="" hidden>
+          <div>
+            <h2>Chat con tu Pokédex</h2>
+            <p id="chatTema">Esperando un Pokémon…</p>
+          </div>
+        </header>
+
+        <div id="chatMensajes" class="chat-mensajes" aria-live="polite"></div>
+
+        <div class="chips">
+          <button type="button" class="chip" data-pregunta="¿Qué debilidades tiene este Pokémon?">Debilidades</button>
+          <button type="button" class="chip" data-pregunta="¿Cómo evoluciona este Pokémon?">Evolución</button>
+          <button type="button" class="chip" data-pregunta="¿Contra qué tipos es fuerte este Pokémon?">Fortalezas</button>
+          <button type="button" class="chip" data-pregunta="Cuéntame una curiosidad de este Pokémon.">Curiosidad</button>
+        </div>
+
+        <form id="chatForm" class="chat-form" autocomplete="off">
+          <input id="chatInput" type="text" placeholder="Pregunta algo sobre este Pokémon…" aria-label="Mensaje">
+          <button type="submit" id="btnEnviar">Enviar</button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
